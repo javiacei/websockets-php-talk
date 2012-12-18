@@ -1,0 +1,17 @@
+{
+    "name": "jal/websockets-chat",
+    "authors": [
+        {
+            "name": "Fco Javier Aceituno Lapido",
+            "email": "fco.javier.aceituno@gmail.com"
+        }
+    ],
+    "require": {
+        "cboden/Ratchet": "0.2.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "JAL": "lib"
+        }
+    }
+}
