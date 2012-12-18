@@ -27,6 +27,7 @@ class ChatServer implements MessageComponentInterface
         foreach ($this->clients as $client) {
             if ($from !== $client) {
                 // Envio del correo a todos los clientes excepto al emisor
+                echo "Enviando mesage '$msg' de {$from->resourceId}\n";
                 $client->send($from->resourceId . ' >> ' . $msg);
             }
         }
