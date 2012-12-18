@@ -1,0 +1,76 @@
+{% extends "JALTaskBundle::layout.html.twig" %}
+
+{% block title %}Listado de tareas{% endblock %}
+
+{% block content %}
+  {% if tasks|length > 0 %}
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Priority</th>
+        <th>Name</th>
+        <th>State</th>
+        <th>Users</th>
+        <th>Unit</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for task in tasks %}
+      <tr>
+        <td><span class="badge badge-inverse">{{ task.priority }}</span></td>
+        <td><span>{{ task.name }}</span></td>
+        <td>
+          <span id="state_task_id_{{ task.id }}" class="label
+            {% if task.state.name == 'todo' %}label-info
+            {% elseif task.state.name == 'doing' %}label-warning
+            {% else %}label-success
+            {% endif %}
+          ">
+            {{ task.state }}
+          </span>
+        </td>
+        <td id="users_task_id_{{ task.id }}">
+          {% for user in task.users %}
+            <span class="label">{{ user.username }}</span>
+          {% endfor %}
+        </td>
+        <td><span class="badge badge-success">{{ task.unit.name }}</span></td>
+        <td>
+
+          {% if task.state.name == 'todo' or not task.users.contains(app.user) %}
+            <a href="{{ path('task_change_state', {'id': task.id, 'state': 'doing'}) }}">
+                <i class="icon-play"></i>
+            </a>
+          {% elseif task.state.name == 'doing' %}
+            <a href="{{ path('task_change_state', {'id': task.id, 'state': 'todo'}) }}">
+                <i class="icon-pause"></i>
+            </a>
+            <a href="{{ path('task_change_state', {'id': task.id, 'state': 'done'}) }}">
+                <i class="icon-ok"></i>
+            </a>
+          {% endif %}
+
+          {#
+          {% if task.state.name == 'todo' or not task.users.contains(app.user) %}
+            <a  class="change-state"
+                href="#"
+                data-href='{"url": "{{ path("task_change_state", {"id": task.id, "state": "doing"}) }}"}'>
+                <i class="icon-play"></i>
+            </a>
+          {% elseif task.state.name == 'doing' %}
+            <a class="change-state" href="#" data-href="todo">
+                <i class="icon-pause"></i>
+            </a>
+            <a class="change-state" href="#" data-href="done">
+                <i class="icon-ok"></i>
+            </a>
+          {% endif %}
+          #}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+{% endblock %}

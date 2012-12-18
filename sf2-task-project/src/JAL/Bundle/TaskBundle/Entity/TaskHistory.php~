@@ -1,0 +1,137 @@
+<?php
+
+namespace JAL\Bundle\TaskBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use JMS\SerializerBundle\Annotation as Serializer;
+
+/**
+ * JAL\Bundle\TaskBundle\Entity\TaskHistory
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="JAL\Bundle\TaskBundle\Entity\TaskHistoryRepository")
+ */
+class TaskHistory
+{
+    /**
+     * @ORM\Id
+     * @ORM\OneToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @Serializer\Type("User")
+     **/
+    private $user;
+
+    /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Task", inversedBy="histories")
+     * @ORM\JoinColumn(name="task_id", referencedColumnName="id")
+     * @Serializer\Type("Task")
+     **/
+    private $task;
+
+    /**
+     * @ORM\Id
+     * @ORM\OneToOne(targetEntity="State")
+     * @ORM\JoinColumn(name="state_id", referencedColumnName="id")
+     * @Serializer\Type("State")
+     **/
+    private $state;
+
+    /**
+     * @ORM\Column(type="datetime", name="created_at")
+     * @Serializer\Type("DateTime")
+     **/
+    private $createdAt;
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return TaskHistory
+     */
+    public function setCreatedAt(\DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set user
+     *
+     * @param JAL\Bundle\TaskBundle\Entity\User $user
+     * @return TaskHistory
+     */
+    public function setUser(\JAL\Bundle\TaskBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return JAL\Bundle\TaskBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set task
+     *
+     * @param JAL\Bundle\TaskBundle\Entity\Task $task
+     * @return TaskHistory
+     */
+    public function setTask(\JAL\Bundle\TaskBundle\Entity\Task $task = null)
+    {
+        $this->task = $task;
+
+        return $this;
+    }
+
+    /**
+     * Get task
+     *
+     * @return JAL\Bundle\TaskBundle\Entity\Task
+     */
+    public function getTask()
+    {
+        return $this->task;
+    }
+
+    /**
+     * Set state
+     *
+     * @param JAL\Bundle\TaskBundle\Entity\State $state
+     * @return TaskHistory
+     */
+    public function setState(\JAL\Bundle\TaskBundle\Entity\State $state = null)
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return JAL\Bundle\TaskBundle\Entity\State
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+}

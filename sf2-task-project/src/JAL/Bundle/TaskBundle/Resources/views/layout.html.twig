@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>Scrum Board - {% block title %}Your scrum board ;){% endblock %}</title>
+    <meta name="description" content="Scrum board, the easiest SCRUM board">
+    <meta name="author" content="Francisco Javier Aceituno Lapido">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- styles -->
+    <link href="{{ asset('bundles/jaltask/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/jaltask/bootstrap/css/bootstrap-responsive.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/jaltask/css/main.css') }}" rel="stylesheet'">
+    <script src="{{ asset('bundles/jaltask/js/jquery-1.8.3.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/jaltask/js/task.js') }}" type="text/javascript"></script>
+  </head>
+
+  <body>
+
+  <div class="container">
+    <section class="toolbar">
+      <ul class="nav nav-pills">
+        <li class="active"><a href="#">Tasks</a></li>
+      </ul>
+    </section>
+
+    <section class="content">
+      {% block content %}{% endblock %}
+    </section>
+
+
+  </div>
+
+  </body>
+</html>

@@ -1,5 +1,5 @@
 var conn = new WebSocket('ws://localhost:1232');
-var messages = $('#messages');
+var messages = $('.messages');
 var form = $('form');
 
 form.submit(function (e) {

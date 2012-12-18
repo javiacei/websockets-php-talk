@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="jal_task.task_manager.class">JAL\Bundle\TaskBundle\Model\TaskManager</parameter>
+        <parameter key="jal_task.task.class">JAL\Bundle\TaskBundle\Entity\Task</parameter>
+        <parameter key="jal_task.task_history_manager.class">JAL\Bundle\TaskBundle\Model\TaskHistoryManager</parameter>
+        <parameter key="jal_task.task_history.class">JAL\Bundle\TaskBundle\Entity\TaskHistory</parameter>
+    </parameters>
+
+    <services>
+        <service id="jal_task.task_manager" class="%jal_task.task_manager.class%">
+            <argument type="service" id="doctrine.orm.default_entity_manager" />
+            <argument>%jal_task.task.class%</argument>
+            <argument type="service" id="event_dispatcher" />
+        </service>
+
+        <service id="jal_task.task_history_manager" class="%jal_task.task_history_manager.class%">
+            <argument type="service" id="doctrine.orm.default_entity_manager" />
+            <argument>%jal_task.task_history.class%</argument>
+        </service>
+    </services>
+</container>

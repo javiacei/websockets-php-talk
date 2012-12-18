@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+  <parameters>
+    <parameter key="jal_task.task_history_listener.class">JAL\Bundle\TaskBundle\EventListener\TaskHistoryListener</parameter>
+  </parameters>
+
+  <services>
+
+    <service id="jal_task.task_history_listener" class="%jal_task.task_history_listener.class%">
+      <tag name="jal_task.event_listener" event="jal_task.pre_task_state_changed" method="onPreTaskStateChanged" />
+      <tag name="jal_task.event_listener" event="jal_task.post_task_state_changed" method="onPostTaskStateChanged" />
+      <argument type="service" id="jal_task.task_history_manager" />
+      <argument type="service" id="logger" />
+    </service>
+
+  </services>
+
+</container>

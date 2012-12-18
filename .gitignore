@@ -1,1 +1,4 @@
 vendor
+sf2-task-project/vendor
+sf2-task-project/app/cache
+sf2-task-project/app/log
