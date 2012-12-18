@@ -38,6 +38,8 @@
         <td><span class="badge badge-success">{{ task.unit.name }}</span></td>
         <td>
 
+          {# Paso 1 #}
+          {#
           {% if task.state.name == 'todo' or not task.users.contains(app.user) %}
             <a href="{{ path('task_change_state', {'id': task.id, 'state': 'doing'}) }}">
                 <i class="icon-play"></i>
@@ -50,8 +52,9 @@
                 <i class="icon-ok"></i>
             </a>
           {% endif %}
+          #}
 
-          {#
+          {# Paso 2 #}
           {% if task.state.name == 'todo' or not task.users.contains(app.user) %}
             <a  class="change-state"
                 href="#"
@@ -66,7 +69,6 @@
                 <i class="icon-ok"></i>
             </a>
           {% endif %}
-          #}
         </td>
       </tr>
       {% endfor %}

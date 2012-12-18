@@ -21,7 +21,10 @@
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "fzaninotto/faker": "dev-master",
         "raulfraile/ladybug-bundle": "dev-master",
-        "friendsofsymfony/user-bundle": "dev-master"
+        "friendsofsymfony/user-bundle": "dev-master",
+
+        "cboden/Ratchet": "0.2.*",
+        "react/zmq": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

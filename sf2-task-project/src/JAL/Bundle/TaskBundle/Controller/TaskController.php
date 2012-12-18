@@ -44,12 +44,26 @@ class TaskController extends Controller
 
         $manager->changeStateTaskByUser($task, $state, $this->getUser());
 
-        return $this->redirect($this->generateUrl('task_list'));
+        // Paso 1
+        //return $this->redirect($this->generateUrl('task_list'));
+
+        // Paso 2
         //return new Response(\json_encode(array(
         //    'state'    => $state->getName(),
         //    'username' => $this->getUser()->getUsername(),
         //    'task_id'  => $task->getId()
         //)), 200, array( 'Content-Type' => 'application/json'));
+
+        // Paso 3
+        $queue = new \JAL\Bundle\TaskBundle\ZeroMQ\Queue();
+        $queue->send(array(
+            'state'    => $state->getName(),
+            'username' => $this->getUser()->getUsername(),
+            'task_id'  => $task->getId()
+        ));
+
+        return new Response(\json_encode(array(
+        )), 200, array( 'Content-Type' => 'application/json'));
     }
 
     public function createAction()
