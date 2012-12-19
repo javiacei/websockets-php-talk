@@ -10,4 +10,6 @@ $server = IoServer::factory(
     1231
 );
 
+echo "localhost 1231\n";
+
 $server->run();

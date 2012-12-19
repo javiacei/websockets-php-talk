@@ -47,7 +47,7 @@ class TaskPusher implements WampServerInterface
     public function onCall(ConnectionInterface $conn, $id, $topic, array $params)
     {
         // No se permite gestionar la cola de mensajes desde consola
-        $conn->callError($id, $topic, 'You are not allowed to make calls')->close();
+        $conn->callError($id, $topic, 'No tienes permiso para acceder a la cola de mensajes desde consola')->close();
     }
 
     public function onPublish(ConnectionInterface $conn, $topic, $event, array $exclude, array $eligible)
